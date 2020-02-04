@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, json, jsonify
 from file_proc import read_file, write_file
 
 app = Flask(__name__)
@@ -49,6 +49,13 @@ def fileWork():
   else:
     return f"Method {request.method} not supported!"
 
+@app.route('/json')
+def json_get():
+  list = []
+  list.append("value1")
+  list.append("value2")
+  list.append("value3")
+  return jsonify({"data":list})
 
 
 if __name__ == '__main__':
